@@ -1,0 +1,53 @@
+---
+title       : Regression modeling
+subtitle    : Correlation of the transmission mode and mpg
+author      : HunBug
+job         : Coursera Student
+framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
+highlighter : highlight.js  # {highlight.js, prettify, highlight}
+hitheme     : tomorrow      # 
+widgets     : []            # {mathjax, quiz, bootstrap}
+mode        : selfcontained # {standalone, draft}
+knit        : slidify::knit2slides
+---
+
+## Question
+
+<h3>Is there any relation between MPG and the transmisson mode of the cars</h3>
+
+<p>1. Is there any relationship?</p>
+<p>2. Is there any influence of number of cylinders?</p>
+
+--- .class #id 
+
+## Data
+
+```{r echo=FALSE}
+data(mtcars)
+```
+In this example i will use the "MTCARS" dataset, it contains 32 observations:
+```{r echo=TRUE}
+head(mtcars)
+```
+
+
+--- .class #id 
+
+## Exploratory
+
+First of all i inspect the data with some plots
+```{r fig.height=4, fig.width=4 ,echo=FALSE, fig.align='center'}
+plot(as.factor(mtcars$am),mtcars$mpg,main='Transmission vs MPG')
+plot(mtcars$cyl,mtcars$mpg,col = 2+mtcars$am,main='Cylinder vs mpg')
+```
+
+
+--- .class #id 
+
+## Model
+
+<h3>The final model:</h3>
+```{r echo=FALSE}
+summary(lm(mtcars$mpg~mtcars$am+mtcars$cyl))
+```
+
